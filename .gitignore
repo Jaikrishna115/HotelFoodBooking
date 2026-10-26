@@ -1,0 +1,13 @@
+.env
+.local/
+.venv/
+venv/
+Hotelbooking/
+__pycache__/
+*.py[cod]
+*.sqlite3
+.pytest_cache/
+staticfiles/
+media/
+*.log
+.vscode/*.local.json

@@ -1,0 +1,47 @@
+{% load static %}<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#111315"><meta name="description" content="Explore the Grand Table menu, order your favourites and reserve a table."><title>{% block title %}Grand Table{% endblock %}</title><link rel="icon" href="{% static 'restaurant/favicon.svg' %}" type="image/svg+xml"><link rel="stylesheet" href="{% static 'restaurant/app.css' %}"><script src="{% static 'restaurant/app.js' %}" defer></script></head>
+<body>
+{% include 'restaurant/includes/icons.html' %}
+<a class="skip-link" href="#main-content">Skip to content</a>
+<aside class="sidebar" id="main-navigation" aria-label="Main navigation">
+  <a class="brand-mark" href="{% url 'home' %}" aria-label="Grand Table home"><svg aria-hidden="true"><use href="#i-cutlery"/></svg></a>
+  {% with current=request.resolver_match.url_name %}<nav class="side-nav">
+  {% if is_billing %}
+    <a class="nav-link {% if current == 'billing' or current == 'order_detail' %}active{% endif %}" href="{% url 'billing' %}"><svg aria-hidden="true"><use href="#i-grid"/></svg><span>Counter</span></a>
+    <a class="nav-link {% if current == 'menu_manage' or current == 'dish_edit' or current == 'dish_create' %}active{% endif %}" href="{% url 'menu_manage' %}"><svg aria-hidden="true"><use href="#i-menu"/></svg><span>Menu</span></a>
+    <a class="nav-link {% if current == 'bookings' %}active{% endif %}" href="{% url 'bookings' %}"><svg aria-hidden="true"><use href="#i-calendar"/></svg><span>Bookings</span></a>
+    <a class="nav-link {% if current == 'tables' %}active{% endif %}" href="{% url 'tables' %}"><svg aria-hidden="true"><use href="#i-table"/></svg><span>Tables</span></a>
+    <a class="nav-link {% if current == 'users' or current == 'user_create' %}active{% endif %}" href="{% url 'users' %}"><svg aria-hidden="true"><use href="#i-users"/></svg><span>Users</span></a>
+    <a class="nav-link {% if current == 'settings' %}active{% endif %}" href="{% url 'settings' %}"><svg aria-hidden="true"><use href="#i-settings"/></svg><span>Settings</span></a>
+  {% elif is_worker %}
+    <a class="nav-link {% if current == 'worker' or current == 'order_detail' %}active{% endif %}" href="{% url 'worker' %}"><svg aria-hidden="true"><use href="#i-grid"/></svg><span>My work</span></a>
+    <a class="nav-link {% if current == 'menu' %}active{% endif %}" href="{% url 'menu' %}"><svg aria-hidden="true"><use href="#i-menu"/></svg><span>New order</span></a>
+    <a class="nav-link {% if current == 'cart' or current == 'checkout' %}active{% endif %}" href="{% url 'cart' %}"><svg aria-hidden="true"><use href="#i-bag"/></svg><span>Order bag</span></a>
+  {% else %}
+    <a class="nav-link {% if current == 'home' or current == 'menu' %}active{% endif %}" href="{% url 'menu' %}"><svg aria-hidden="true"><use href="#i-menu"/></svg><span>Explore</span></a>
+    <a class="nav-link {% if current == 'cart' or current == 'checkout' %}active{% endif %}" href="{% url 'cart' %}"><svg aria-hidden="true"><use href="#i-bag"/></svg><span>My bag{% if cart_count %} · {{ cart_count }}{% endif %}</span></a>
+    <a class="nav-link {% if current == 'orders' or current == 'order_detail' %}active{% endif %}" href="{% url 'orders' %}"><svg aria-hidden="true"><use href="#i-receipt"/></svg><span>Orders</span></a>
+    <a class="nav-link {% if current == 'bookings' or current == 'book_table' %}active{% endif %}" href="{% url 'bookings' %}"><svg aria-hidden="true"><use href="#i-table"/></svg><span>Book a table</span></a>
+  {% endif %}
+  </nav>{% endwith %}
+  <div class="side-bottom">{% if user.is_authenticated %}<a class="nav-link" href="{% url 'password_change' %}" title="Account and password"><span class="nav-avatar">{{ user.display_name|first|upper }}</span><span>Account</span></a>{% else %}<a class="nav-link" href="{% url 'login' %}"><svg aria-hidden="true"><use href="#i-user"/></svg><span>Sign in</span></a>{% endif %}</div>
+</aside>
+<div class="sidebar-backdrop" data-nav-backdrop hidden></div>
+<div class="app-frame">
+  <header class="topbar">
+    <button class="mobile-nav-toggle" data-nav-toggle aria-controls="main-navigation" aria-expanded="false" aria-label="Open navigation"><svg><use href="#i-bars"/></svg></button>
+    <a class="brand-block" href="{% url 'home' %}"><div class="brand">{% if restaurant_settings.name == "Grand Table" %}Grand<span>Table.</span>{% else %}{{ restaurant_settings.name|default:"Grand Table" }}<span>.</span>{% endif %}</div><div class="brand-caption">{{ restaurant_settings.tagline|default:"Good food. Great company." }}</div></a>
+    <div class="topbar-tools">
+      <div class="location-label"><svg aria-hidden="true"><use href="#i-pin"/></svg><span>{% if restaurant_settings.address %}{{ restaurant_settings.address|truncatechars:38 }}{% else %}Fresh from our kitchen{% endif %}</span></div>
+      {% if user.is_authenticated %}<a class="profile-link" href="{% url 'password_change' %}"><span class="nav-avatar">{{ user.display_name|first|upper }}</span><span class="profile-name">{{ user.first_name|default:user.email|truncatechars:20 }}</span><svg aria-hidden="true"><use href="#i-chevron"/></svg></a>{% else %}<a class="btn secondary small" href="{% url 'login' %}">Sign in <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>{% endif %}
+    </div>
+  </header>
+  <main id="main-content">
+    {% if messages %}<div class="messages" aria-live="polite">{% for message in messages %}<div class="notice {{ message.tags }}"><svg aria-hidden="true"><use href="#i-info"/></svg><p>{{ message }}</p></div>{% endfor %}</div>{% endif %}
+    <div class="notice info freshness" data-freshness-notice hidden role="status"><svg aria-hidden="true"><use href="#i-refresh"/></svg><p>New order information is available. <a href="{{ request.get_full_path }}">Refresh this page</a></p></div>
+    {% block content %}{% endblock %}
+  </main>
+  <footer class="footer"><span>{{ restaurant_settings.name|default:"Grand Table" }} · Made for moments around food.</span><span><svg aria-hidden="true"><use href="#i-shield"/></svg>Freshly prepared. Served with care.</span></footer>
+</div>
+{% block scripts %}{% endblock %}
+</body></html>

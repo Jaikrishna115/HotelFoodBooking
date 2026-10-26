@@ -1,0 +1,12 @@
+{
+  "version": "0.2.0",
+  "configurations": [{
+    "name": "Grand Table website",
+    "type": "debugpy",
+    "request": "launch",
+    "program": "${workspaceFolder}/manage.py",
+    "args": ["runserver", "127.0.0.1:8000"],
+    "django": true,
+    "justMyCode": true
+  }]
+}

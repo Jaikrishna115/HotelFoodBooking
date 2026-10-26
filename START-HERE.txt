@@ -1,0 +1,47 @@
+GRAND TABLE — YOUR DJANGO WEBSITE
+
+The website has been installed in:
+C:\Users\jaikr\Jk_Projects\HotelFoodBooking
+
+1. VIEW THE WEBSITE
+   Open http://127.0.0.1:8000/ on this computer.
+   The initial preview is already running in the background.
+
+2. SIGN IN AS BILLING
+   Open .local\first-login.txt in this project folder.
+   It contains your website email and unique temporary password.
+   Open the website's Sign in page and use those details.
+   Choose your own new password when the website asks.
+   The PostgreSQL username/password are NOT website login details.
+
+3. CREATE YOUR WORKERS
+   Sign in as Billing, then open Settings > Users > Add user.
+   Enter their name, email, role and initial password.
+   Share the login privately. Each employee changes their password at first login.
+   Customers create their own accounts using Create a customer account.
+
+4. ORDER FLOW
+   Worker: select a table > add food > checkout > update that order's status.
+   Customer: place an online order. Billing assigns it to a worker.
+   Only its responsible worker can change an order's food status.
+   Only Billing records cash collected and accesses Settings.
+   Order changes are saved in your PostgreSQL database hotelfood_db.
+
+5. START AFTER RESTARTING YOUR COMPUTER
+   Open a terminal in the project folder and run:
+   .\run.ps1
+   Keep that terminal open while using the website.
+   If scripts are blocked, run Python directly:
+   .\Hotelbooking\Scripts\python.exe manage.py runserver 127.0.0.1:8000
+
+6. STOP THE CURRENT BACKGROUND PREVIEW
+   Run .\stop.ps1 in the project terminal.
+   Servers you start manually in a terminal stop with Ctrl+C.
+   Your saved PostgreSQL records remain after stopping the website.
+
+This is the local website on your computer. Public internet/mobile access
+requires hosting or a separately configured network setup.
+Cash collection is recorded by Billing; online card/UPI processing is not connected.
+The starter menu/photos/prices are illustrative and editable from Billing Settings.
+Read README.md for the project structure, detailed instructions and tests.
+Do not share .env or the private .local folder.

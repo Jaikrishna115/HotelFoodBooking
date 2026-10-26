@@ -1,0 +1,87 @@
+Grand Table sample menu - additional food photographs
+Source and license pages checked on 24 October 2026.
+
+These nine photographs are supplied by Pexels contributors, not copied from
+another restaurant's proprietary marketing website. Pexels permits free use
+on websites and apps, permits modifications, and does not require attribution.
+Credit is recorded here voluntarily. Do not imply photographer endorsement.
+License: https://www.pexels.com/license/
+
+Chicken Tikka
+Photographer: Anil Sharma
+Source title: Delicious Chicken Tikka on Black Skillet
+Source: https://www.pexels.com/photo/delicious-chicken-tikka-on-black-skillet-30749024/
+Image: https://images.pexels.com/photos/30749024/pexels-photo-30749024.jpeg
+
+Crispy Corn
+Photographer: Dreamer Dude
+Source title: Crispy Corn with Onion and Spices
+Source: https://www.pexels.com/photo/crispy-corn-with-onion-and-spices-18379774/
+Image: https://images.pexels.com/photos/18379774/pexels-photo-18379774.jpeg
+
+Butter Naan
+Photographer: Jack Baghel
+Source title: Indian Naan Bread with Additions
+Source: https://www.pexels.com/photo/indian-naan-bread-with-additions-20446413/
+Image: https://images.pexels.com/photos/20446413/pexels-photo-20446413.jpeg
+The source composition includes naan with accompanying dishes.
+
+Gulab Jamun
+Photographer: Kulbir
+Source title: Gulab Jamun on White Ceramic Bowl
+Source: https://www.pexels.com/photo/gulab-jamun-on-white-ceramic-bowl-7449105/
+Image: https://images.pexels.com/photos/7449105/pexels-photo-7449105.jpeg
+
+Fresh Lime Soda
+Photographer: prasannabaarathi
+Source title: Photograph of a Glass with Soda Water
+Source: https://www.pexels.com/photo/photograph-of-a-glass-with-soda-water-4045205/
+Image: https://images.pexels.com/photos/4045205/pexels-photo-4045205.jpeg
+
+Mango Lassi
+Photographer: Rahul Sonawane
+Source title: Mango Cocktail Set next to Cut up Mango Fruit
+Source: https://www.pexels.com/photo/mango-cocktail-set-next-to-cut-up-mango-fruit-17200460/
+Image: https://images.pexels.com/photos/17200460/pexels-photo-17200460.jpeg
+The source description identifies the pictured drink as mango lassi.
+
+Implementation: image URLs request 800-pixel-wide compressed copies from the
+provider. Menu cards may crop to fit. The application stores URLs; this task did
+not download or rehost the photographs. The seed command only fills an existing
+blank image URL when --fill-missing-images is explicitly supplied; it does not
+replace a restaurant's existing image URL. These are illustrative sample-menu
+photos and can be replaced in Billing settings with the restaurant's own photos.
+
+Vegetable Biryani
+Photographer: Milton Das
+Source title: Vegetable Biryani in Pressure Cooker with Colorful Sides
+Source: https://www.pexels.com/photo/vegetable-biryani-in-pressure-cooker-with-colorful-sides-35041655/
+Image: https://images.pexels.com/photos/35041655/pexels-photo-35041655.jpeg
+Visually checked in the browser: rice with peas, carrots, green beans and a bay
+leaf in a pressure cooker. No visible egg or meat. An earlier candidate photo
+(Pexels 37059699) was rejected after visual review because it contained eggs.
+
+Chicken Biryani
+Photographer: alleksana
+Source title: Homemade Chicken Biryani
+Source: https://www.pexels.com/photo/homemade-chicken-biryani-4224312/
+Image: https://images.pexels.com/photos/4224312/pexels-photo-4224312.jpeg
+
+Paneer Butter Masala
+Photographer: Prabal Pratap Singh
+Source title: Paneer Butter Masala
+Source: https://www.pexels.com/photo/paneer-butter-masala-9609838/
+Image: https://images.pexels.com/photos/9609838/pexels-photo-9609838.jpeg
+
+The three earlier Unsplash image IDs still used for Paneer Tikka, Butter Chicken
+and Chocolate Brownie are retained unchanged from the existing Flutter sample
+menu and are outside this nine-image Pexels sourcing update.
+
+Existing sample-data repair: only replace the exact old sample URL on the named
+dish; do not overwrite a custom image URL. The usual seed command still does not
+replace nonempty images.
+Vegetable Biryani and Chicken Biryani old URL:
+https://images.unsplash.com/photo-1563379091339-03246963d51a?w=800&q=85
+Paneer Butter Masala old URL:
+https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?w=800&q=85
+Use the new dish-specific Pexels URLs above with ?auto=compress&cs=tinysrgb&w=800.
